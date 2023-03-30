@@ -1,4 +1,4 @@
-import "../styles/styles.css";
+import "../styles/videoplayer.css";
 import React, { useState, useRef } from "react";
 import ReactPlayer from "react-player";
 import Video from "../assets/Video.mp4";
