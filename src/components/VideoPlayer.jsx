@@ -5,6 +5,8 @@ import Video from "../assets/Video.mp4";
 import screenfull from "screenfull";
 import PlayerControls from "./PlayerControls"
 
+
+let count = 0
 const format = (seconds) => {
   if (isNaN(seconds)) {
     return "00:00";
@@ -33,6 +35,7 @@ const VideoPlayer = () => {
 
   const playerRef = useRef(null);
   const playerContainerRef = useRef(null);
+  const controlsRef = useRef(null)
 
   const handlePlayPause = () => setState({ ...state, playing: !state.playing });
   const handleMuted = () => setState({ ...state, muted: !state.muted });
@@ -40,8 +43,21 @@ const VideoPlayer = () => {
     playerRef.current.seekTo(playerRef.current.getCurrentTime() - 10);
   const handleForward = () =>
     playerRef.current.seekTo(playerRef.current.getCurrentTime() + 10);
-  const handleProgress = (changeState) =>
-    setState({ ...state, ...changeState });
+  
+  const handleProgress = (changeState) => {
+    if(count > 3) {
+      controlsRef.current.style.visibility = "hidden"
+      count = 0
+    }
+
+    if(controlsRef.current.style.visibility == "visible") {
+      count += 1
+    }
+
+    if(!state.seeking) {
+      setState({ ...state, ...changeState });
+    }
+  }
 
   const toggleFullScreen = () => {
     screenfull.toggle(playerContainerRef.current);
@@ -69,8 +85,13 @@ const VideoPlayer = () => {
       ? format(playerRef.current.getDuration())
       : "00:00";
 
+  const handleMouseMove = () => {
+    controlsRef.current.style.visibility = "visible"
+    count = 0;
+  }
+
   return (
-    <main ref={playerContainerRef} className="videoplayer">
+    <main ref={playerContainerRef} className="videoplayer" onMouseMove={handleMouseMove}>
         <div className="container">
           <ReactPlayer
             width="100%"
@@ -84,7 +105,8 @@ const VideoPlayer = () => {
           />
           
           <div className="mainControls">
-            <PlayerControls 
+            <PlayerControls
+              ref={controlsRef}
               state={state}
               handleForward={handleForward}
               handleMuted={handleMuted}

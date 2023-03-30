@@ -1,10 +1,10 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import * as TbIcons from "react-icons/tb";
 import * as BiIcons from "react-icons/bi";
 import * as BsIcons from "react-icons/bs";
 import '../styles/controls.css'
 
-const PlayerControls = ({
+const PlayerControls = forwardRef(({
   state,
   handleForward,
   handleMuted,
@@ -15,9 +15,9 @@ const PlayerControls = ({
   toggleFullScreen,
   elapsedTime,
   totalDuration,
-}) => {
+}, ref) => {
   return (
-    <main className="controls">
+    <main className="controls" ref={ref}>
       <div className="progressBar">
         <input
           type="range"
@@ -69,6 +69,6 @@ const PlayerControls = ({
       </div>
     </main>
   );
-};
+});
 
 export default PlayerControls;
