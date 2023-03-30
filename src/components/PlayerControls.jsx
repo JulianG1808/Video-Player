@@ -1,31 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
+import * as TbIcons from "react-icons/tb";
+import * as BiIcons from "react-icons/bi";
+import * as BsIcons from "react-icons/bs";
 
-const PlayerControls = ({ onPlayPause }) => {
+const PlayerControls = ({
+  state,
+  handleForward,
+  handleMuted,
+  handlePlayPause,
+  handleRewind,
+  handleSeekChange,
+  handleVolumeChange,
+  toggleFullScreen,
+  elapsedTime,
+  totalDuration,
+}) => {
   return (
-    <div>
-      <div>
-        ProgressBar
+    <main className="controls">
+      <div className="progressBar">
+        <input
+          type="range"
+          min={0}
+          max={100}
+          value={state.played * 100}
+          onChange={(e) => handleSeekChange(e.target.value)}
+        />
       </div>
 
-      <div>
-        <button>Backward</button>
-        <button onClick={onPlayPause}>Pause / Play</button>
-        <button>Forward</button>  
-      </div>
+      <div className="mediaControls">
+        <section className="leftControls">
+          <button onClick={handleMuted}>
+            {state.muted ? <BiIcons.BiVolumeMute /> : <BiIcons.BiVolumeFull />}
+          </button>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={state.muted ? 0 : state.volume * 100}
+            onChange={(e) => handleVolumeChange(e.target.value)}
+          />
+        </section>
 
-      <div>
-        <p>00:00 / 00:00</p>
-      </div>
+        <section className="midControls">
+          <button onClick={handleRewind}>
+            <TbIcons.TbPlayerTrackPrev />
+          </button>
+          <button onClick={handlePlayPause}>
+            {state.playing ? (
+              <TbIcons.TbPlayerPause />
+            ) : (
+              <TbIcons.TbPlayerPlay />
+            )}
+          </button>
+          <button onClick={handleForward}>
+            <TbIcons.TbPlayerTrackNext />
+          </button>
+        </section>
 
-      <div>
-        <button>Mute Sound</button>
+        <section className="rightControls">
+          <p>
+            {elapsedTime} / {totalDuration}
+          </p>
+          <button onClick={toggleFullScreen}>
+            <BsIcons.BsFullscreen />
+          </button>
+        </section>
       </div>
-
-      <div>
-        <button>FullScreen</button>
-      </div>
-    </div>
-  )
-}
+    </main>
+  );
+};
 
 export default PlayerControls;
