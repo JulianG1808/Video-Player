@@ -4,55 +4,22 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
+  margin: 0;
 }
 
 .videoplayer {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
+  width: 1080px;
   margin: 0;
+  position: relative;
 }
 
-.progressBar {
+.mainControls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
-}
-
-.progressBar input {
-  width: 100%;
-}
-
-.controls {
-  display: flex;
-  flex-direction: column;
-}
-
-.mediaControls {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 60px;
-}
-
-.leftControls {
-  display: flex;
-  flex-direction: row;
-  justify-self: start;
-  gap: .2rem;
-}
-
-.midControls {
-  display: flex;
-  flex-direction: row;
-  justify-self: center;
-  gap: .2rem;
-
-}
-
-.rightControls {
-  display: flex;
-  flex-direction: row;
-  justify-self: end;
-  gap: .5rem;
-
+  display: hidden;
 }

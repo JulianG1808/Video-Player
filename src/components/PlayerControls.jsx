@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import * as TbIcons from "react-icons/tb";
 import * as BiIcons from "react-icons/bi";
 import * as BsIcons from "react-icons/bs";
+import '../styles/controls.css'
 
 const PlayerControls = ({
   state,

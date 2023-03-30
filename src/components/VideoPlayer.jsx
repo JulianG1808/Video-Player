@@ -71,30 +71,34 @@ const VideoPlayer = () => {
 
   return (
     <main ref={playerContainerRef} className="videoplayer">
-        <ReactPlayer
-          width="100%"
-          height="100%"
-          url={Video}
-          playing={state.playing}
-          muted={state.muted}
-          ref={playerRef}
-          volume={state.volume}
-          onProgress={handleProgress}
-        />
-
-        <PlayerControls 
-          state={state}
-          handleForward={handleForward}
-          handleMuted={handleMuted}
-          handlePlayPause={handlePlayPause}
-          handleProgress={handleProgress}
-          handleRewind={handleRewind}
-          handleSeekChange={handleSeekChange}
-          handleVolumeChange={handleVolumeChange}
-          toggleFullScreen={toggleFullScreen}
-          elapsedTime={elapsedTime}
-          totalDuration={totalDuration}
-        />
+        <div className="container">
+          <ReactPlayer
+            width="100%"
+            height="100%"
+            url={Video}
+            playing={state.playing}
+            muted={state.muted}
+            ref={playerRef}
+            volume={state.volume}
+            onProgress={handleProgress}
+          />
+          
+          <div className="mainControls">
+            <PlayerControls 
+              state={state}
+              handleForward={handleForward}
+              handleMuted={handleMuted}
+              handlePlayPause={handlePlayPause}
+              handleProgress={handleProgress}
+              handleRewind={handleRewind}
+              handleSeekChange={handleSeekChange}
+              handleVolumeChange={handleVolumeChange}
+              toggleFullScreen={toggleFullScreen}
+              elapsedTime={elapsedTime}
+              totalDuration={totalDuration}
+            />
+          </div>
+        </div>
     </main>
   );
 };

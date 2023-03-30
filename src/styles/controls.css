@@ -1,0 +1,43 @@
+.progressBar {
+  width: 100%;
+}
+
+.progressBar input {
+  width: 100%;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+}
+
+.mediaControls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.leftControls {
+  display: flex;
+  flex-direction: row;
+  justify-self: start;
+  gap: .2rem;
+}
+
+.midControls {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  gap: .2rem;
+
+}
+
+.rightControls {
+  display: flex;
+  flex-direction: row;
+  justify-self: end;
+  gap: .5rem;
+
+}
