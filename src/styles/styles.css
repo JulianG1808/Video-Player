@@ -6,7 +6,7 @@ body {
   height: 100vh;
 }
 
-.container {
+.videoplayer {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -23,6 +23,11 @@ body {
 }
 
 .controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.mediaControls {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
